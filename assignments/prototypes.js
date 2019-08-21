@@ -87,7 +87,7 @@ Car.prototype.driveDistance = function () {
 }
 Car.prototype.carCrashed = function () {
   if (this.crash === true)  {
-    console.log(`I crashed at x miles!`);
+    console.log(`I crashed at ${this.driveDistance()} miles!`);
     return this.drive = false
   }
   return this.drive = true;
