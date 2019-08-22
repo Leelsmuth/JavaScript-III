@@ -52,17 +52,23 @@ function Person(name, age) {
   this.greet = `${this.name} ${this.age}`;
   this.eatEdible = 'I eat I eat I eat...Muah HaHa';
   this.stomach = [];
-  this.poop = this.stomach;
 }
-Person.prototype.eating = function () {
-  return this.stomach.push = this.eatEdible;
+Person.prototype.eating = function (food) {
+  return this.stomach.push(food);
 }
 
 Person.prototype.pooping = function () {
-  return this.stomach;
+  return this.stomach= [];
 }
 
 var femi = new Person('Oluwafemi', '29');
+femi.eating('eba');
+console.log(femi.stomach)
+femi.eating('Rice');
+console.log(femi.stomach)
+femi.pooping();
+console.log(femi.stomach)
+
 /*
   TASK 2
 
@@ -114,11 +120,10 @@ function Baby (name, age,) {
 }
 
 Baby.prototype = Object.create(Person.prototype);
-var baby = new Baby('Jamie', 1, 'trains'); // just copy
 Baby.prototype.playBaby = function () {
   return `Baby likes to play.. Baby likes to play`;
 }
-
+var baby = new Baby('Jamie', 1, 'trains');
 
 /*
   TASK 4

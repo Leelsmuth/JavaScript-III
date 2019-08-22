@@ -20,6 +20,11 @@ var myName = 'Oluwafemi';
 function myName () {
     return this;
 }
+
+var a = {
+    name: 'nnn',
+}
+
 // Principle 3
 // Whenever a Constructor function is used.
 // code example for New Binding
