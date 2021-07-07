@@ -45,7 +45,31 @@
   - When eating an edible, it should be pushed into a "stomach" property which is an array.
   - Give persons the ability to poop.
   - When pooping, the stomach should empty.
+*/
+function Person(name, age) {
+  this.name = name;
+  this.age = Number(age);
+  this.greet = `${this.name} ${this.age}`;
+  this.eatEdible = 'I eat I eat I eat...Muah HaHa';
+  this.stomach = [];
+}
+Person.prototype.eating = function (food) {
+  return this.stomach.push(food);
+}
 
+Person.prototype.pooping = function () {
+  return this.stomach= [];
+}
+
+var femi = new Person('Oluwafemi', '29');
+femi.eating('eba');
+console.log(femi.stomach)
+femi.eating('Rice');
+console.log(femi.stomach)
+femi.pooping();
+console.log(femi.stomach)
+
+/*
   TASK 2
 
   - Build a Car constructor that takes model name and make.
@@ -55,14 +79,53 @@
   - A crashed car can't be driven any more. Attempts return a string "I crashed at x miles!", x being the miles in the odometer.
   - Give cars the ability to be repaired.
   - A repaired car can be driven again.
-
+*/
+function Car (modelName, carMake) {
+  this.model = modelName;
+  this.make = carMake;
+  this.drive = true;
+  this.crash = true;
+  this.repair = true;
+  this.odometer = 0;
+}
+Car.prototype.driveDistance = function () {
+  return this.odometer += 50;
+}
+Car.prototype.carCrashed = function () {
+  if (this.crash === true)  {
+    console.log(`I crashed at ${this.driveDistance()} miles!`);
+    return this.drive = false
+  }
+  return this.drive = true;
+}
+Car.prototype.carRepaired = function () {
+  if (this.repair === true) {
+    console.log(`You have fixed your ${this.model}. Take it for a spin!!!`)
+    return this.drive;
+  }
+  return this.drive = false;
+}
+var vehicle = new Car('Toyota', 'Sedan');
+/*
   TASK 3
 
   - Build a Baby constructor that subclasses the Person built earlier.
   - Babies of course inherit the ability to greet, which can be strange.
   - Babies should have the ability to play, which persons don't.
   - By playing, a string is returned with some text of your choosing.
+*/
+function Baby (name, age,) {
+  Person.call(this, name, age);
+  this.play = `a-ga, a-ba, a-da`;
+}
 
+Baby.prototype = Object.create(Person.prototype);
+Baby.prototype.playBaby = function () {
+  return `Baby likes to play.. Baby likes to play`;
+}
+var baby = new Baby('Jamie', 1, 'trains');
+
+/*
   TASK 4
 
   Use your imagination and come up with constructors that allow to build objects
@@ -70,7 +133,26 @@
   complicated one with lots of state. Surprise us!
 
 */
+function Life(name, placeOfBirth, death) {
+  this.name = name;
+  this.place = placeOfBirth;
+  this.death = Number(death);
+  this.college = true;
+  this.goodLife = `${this.name}, I guess you lived a good Life.`;
+  this.justOK = `${this.name}, life did nt turn out how you planned it. At least you still enjoyed your old age. I guess you can't complain too much`
+  this.notJustOk = `${this.name}, Hmmmmmmmmmmmmmmmm`
+}
+Life.prototype.checkLife = function () {
+  if (this.death < 50) {
+    return this.notJustOk;
+  } else if (this.death < 70 ) {
+    return this.justOK;
+  } else {
+    return this.goodLife;
+  }  
+}
 
+var james = new Life('James', 'Nigeria', '80')
 /*
 
   STRETCH TASK
